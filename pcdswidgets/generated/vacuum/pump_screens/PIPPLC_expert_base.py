@@ -30,12 +30,13 @@ except ImportError:
 
 class PipplcExpertBase(DesignerWidget):
     Form: "QtWidgets.QWidget"
+    PyDMEnumComboBox: "PyDMEnumComboBox"
+    PyDMEnumComboBox_2: "PyDMEnumComboBox"
     PyDMLabel_11: "PyDMLabel"
     PyDMLineEdit_3: "PyDMLineEdit"
     autoOn_countdown_label: "QtWidgets.QLabel"
     autoOn_countdown_readback: "PyDMLabel"
     auto_on_readback: "PyDMLabel"
-    auto_on_setpoint: "PyDMLineEdit"
     groupBox: "QtWidgets.QGroupBox"
     groupBox_2: "QtWidgets.QGroupBox"
     groupBox_3: "QtWidgets.QGroupBox"
@@ -46,7 +47,6 @@ class PipplcExpertBase(DesignerWidget):
     high_voltage_in_label_3: "QtWidgets.QLabel"
     high_voltage_in_readback: "PyDMLabel"
     high_voltage_switch_readback: "PyDMLabel"
-    high_voltage_switch_setpoint: "PyDMLineEdit"
     interlock_device_label: "QtWidgets.QLabel"
     interlock_device_readback: "PyDMLabel"
     interlock_ok_label: "QtWidgets.QLabel"
@@ -95,8 +95,8 @@ class PipplcExpertBase(DesignerWidget):
             "auto_on_readback",
             "protection_setpoint_setpoint",
             "setpoint_hysteresis_setpoint",
-            "high_voltage_switch_setpoint",
-            "auto_on_setpoint",
+            "PyDMEnumComboBox",
+            "PyDMEnumComboBox_2",
             "plc_ai_offset_readback",
             "qpc_name_readback",
             "qpc_pumpsize_readback",
@@ -105,6 +105,12 @@ class PipplcExpertBase(DesignerWidget):
         ],
     }
     _widget_to_macro = {
+        "PyDMEnumComboBox": [
+            "prefix",
+        ],
+        "PyDMEnumComboBox_2": [
+            "prefix",
+        ],
         "PyDMLabel_11": [
             "name",
         ],
@@ -114,9 +120,6 @@ class PipplcExpertBase(DesignerWidget):
         "auto_on_readback": [
             "prefix",
         ],
-        "auto_on_setpoint": [
-            "prefix",
-        ],
         "high_voltage_do_readback": [
             "prefix",
         ],
@@ -124,9 +127,6 @@ class PipplcExpertBase(DesignerWidget):
             "prefix",
         ],
         "high_voltage_switch_readback": [
-            "prefix",
-        ],
-        "high_voltage_switch_setpoint": [
             "prefix",
         ],
         "interlock_device_readback": [
@@ -164,6 +164,12 @@ class PipplcExpertBase(DesignerWidget):
         ],
     }
     _widget_to_pre_template = {
+        "PyDMEnumComboBox": [
+            ("channel", """ca://${prefix}:HV_SW"""),
+        ],
+        "PyDMEnumComboBox_2": [
+            ("channel", """ca://${prefix}:Auto_On"""),
+        ],
         "PyDMLabel_11": [
             ("text", """${name}"""),
         ],
@@ -172,9 +178,6 @@ class PipplcExpertBase(DesignerWidget):
         ],
         "auto_on_readback": [
             ("channel", """ca://${prefix}:Auto_On_RBV"""),
-        ],
-        "auto_on_setpoint": [
-            ("channel", """ca://${prefix}:Auto_On"""),
         ],
         "high_voltage_do_readback": [
             ("channel", """ca://${prefix}:HV_DO_RBV"""),
@@ -185,10 +188,8 @@ class PipplcExpertBase(DesignerWidget):
         "high_voltage_switch_readback": [
             ("channel", """ca://${prefix}:HV_SW_RBV"""),
         ],
-        "high_voltage_switch_setpoint": [
-            ("channel", """ca://${prefix}:HV_SW"""),
-        ],
         "interlock_device_readback": [
+            ("text", """ca://${prefix}:ILK_DEVICE_RBV"""),
             ("channel", """ca://${prefix}:ILK_DEVICE_RBV"""),
         ],
         "interlock_ok_readback": [
@@ -198,6 +199,7 @@ class PipplcExpertBase(DesignerWidget):
             ("channel", """ca://${prefix}:AI_Offset_RBV"""),
         ],
         "pressure_readback": [
+            ("text", """ca://${prefix}:PRESS_RBV"""),
             ("channel", """ca://${prefix}:PRESS_RBV"""),
         ],
         "protection_setpoint_readback": [
@@ -217,6 +219,7 @@ class PipplcExpertBase(DesignerWidget):
             ("channel", """ca://${prefix}:PUMPSIZE"""),
         ],
         "setpoint_hysteresis_readback": [
+            ("text", """ca://${prefix}:SP_HYS_RBV"""),
             ("channel", """ca://${prefix}:SP_HYS_RBV"""),
         ],
         "setpoint_hysteresis_setpoint": [

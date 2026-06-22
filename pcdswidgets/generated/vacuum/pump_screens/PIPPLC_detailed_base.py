@@ -139,9 +139,11 @@ class PipplcDetailedBase(DesignerWidget):
             ("channel", """ca://${prefix}:HV_SW_RBV"""),
         ],
         "interlock_device_readback": [
+            ("text", """ca://${prefix}:ILK_DEVICE_RBV"""),
             ("channel", """ca://${prefix}:ILK_DEVICE_RBV"""),
         ],
         "pressure_readback": [
+            ("text", """ca://${prefix}:PRESS_RBV"""),
             ("channel", """ca://${prefix}:PRESS_RBV"""),
         ],
         "protection_setpoint_readback": [
@@ -161,6 +163,7 @@ class PipplcDetailedBase(DesignerWidget):
             ("channel", """ca://${prefix}:PUMPSIZE"""),
         ],
         "setpoint_hysteresis_readback": [
+            ("text", """ca://${prefix}:SP_HYS_RBV"""),
             ("channel", """ca://${prefix}:SP_HYS_RBV"""),
         ],
         "setpoint_hysteresis_setpoint": [
